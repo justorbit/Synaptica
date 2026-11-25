@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- This site is hosted on Netlify. Anyone can build and deploy a site
+         like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=3b1a23da-20bc-4955-a9a3-5bb090e40930
+         Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Synaptica</title>
+    <meta name="color-scheme" content="dark">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&amp;family=Inter:wght@400;500&amp;family=Noto+Nastaliq+Urdu&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header>
+        <h1><span class="g">SYNAPTICA</span></h1>
+        <input id="q" type="search" placeholder="Search resources" aria-label="Search" style="flex:1;min-width:150px;max-width:300px">
+        <select id="lang" aria-label="Explanation language"></select>
+        <button class="pri" id="add">+ Add resource</button>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+
+        <!-- Hero section -->
+        <section class="hero">
+            <h2>Study smarter for <span class="g"><b>O Level</b>, <b>A Level</b>, <b>IGCSE</b> and <b>SAT</b></span></h2>
+            <p>Notes, past papers, marking schemes, guess papers and lectures. Every resource has a plain-words explanation in your language.</p>
+        </section>
+
+        <!-- Filter rows -->
+        <div class="row" id="boards" role="tablist"></div>
+        <div class="row" id="types"></div>
+        <div class="row" id="subjs"></div>
+
+        <!-- Resource grid -->
+        <div class="grid" id="grid"></div>
+
+        <!-- External links -->
+        <h2 class="s">Top outside resources</h2>
+        <div class="links" id="links"></div>
+
+    </main>
+
+    <!-- ==================== VIEW RESOURCE MODAL ==================== -->
+    <div class="ov" id="vo">
+        <div class="md">
+            <h2 id="vt"></h2>
+            <small id="vm" style="color:var(--mu)"></small>
+
+            <!-- Simplified explanation -->
+            <div class="ex">
+                <b>Simplified explanation</b>
+                <small id="vl" style="color:var(--mu)"></small>
+                <div id="ve"></div>
+            </div>
+
+            <!-- Content stage -->
+            <div class="stage">
+                <div class="wm" id="wm"></div>
+                <div class="t" id="vc"></div>
+            </div>
+
+            <!-- Action bar -->
+            <div class="bar">
+                <a id="yt" target="_blank" rel="noopener noreferrer"
+                   style="display:none;text-decoration:none;color:var(--tx);border:1px solid var(--ln);padding:9px 14px;border-radius:10px;background:var(--pn)">
+                    ▶ Watch video lessons
+                </a>
+                <a id="rp" target="_blank" rel="noopener noreferrer"
+                   style="display:none;text-decoration:none;color:var(--tx);border:1px solid var(--ln);padding:9px 14px;border-radius:10px;background:var(--pn)">
+                    Find real papers, mark schemes, reports
+                </a>
+                <button id="dl" class="pri">Download</button>
+                <button id="vx" class="clx">☒ Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ADD RESOURCE MODAL ==================== -->
+    <div class="ov" id="ao">
+        <form class="md" id="af">
+            <h2>Add a resource</h2>
+
+            <label>Board</label>
+            <select name="board"></select>
+
+            <label>Resource type</label>
+            <select name="type"></select>
+
+            <label>Subject</label>
+            <input name="subj" required maxlength="60">
+
+            <label>Title</label>
+            <input name="title" required maxlength="100">
+
+            <label>Easy words explanation</label>
+            <textarea name="easy" rows="3" required></textarea>
+
+            <label>YouTube link (optional, attaches that exact video)</label>
+            <input name="yt" placeholder="https://www.youtube.com/watch?v=...">
+
+            <label>Main content</label>
+            <textarea name="content" rows="6" required></textarea>
+
+            <!-- Form actions -->
+            <div class="bar">
+                <button type="button" id="ac">Cancel</button>
+                <button class="pri">Save resource</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast" id="ts"></div>
+
+    <script src="index.js">
+        // console.log("made by M-Yahya (@justorbit)");
+    </script>
+
+</body>
+</html>

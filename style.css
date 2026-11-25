@@ -1,0 +1,632 @@
+/* ============================================================
+   SharePad-inspired paper-notebook theme (light)
+   Handwritten type, ink borders, offset shadows, tape accents
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Kalam:wght@300;400;700&family=Source+Serif+4:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* b {color: red;} */
+
+:root {
+  /* Paper + ink palette */
+  --bg: #faf9f6;
+  --bg-2: #f2ede4;
+  --bg-3: #e9e3d7;
+  --pn: #ffffff;
+  --pn-2: #faf9f6;
+  --ln: #ccc9bc;
+  --tx: #1c1c1c;
+  --tx-2: #5a5850;
+  --mu: #6f6c64;
+  --mu-faint: #aaa89e;
+  --a: #c8443c;
+  --a-soft: #e3a9a4;
+  --b: #8b5cf6;
+  --red: #c8443c;
+  --red-soft: #e3a9a4;
+
+  /* Tape accents */
+  --tape-y: rgba(253, 224, 71, .72);
+  --tape-p: rgba(249, 168, 212, .72);
+  --tape-b: rgba(147, 197, 253, .72);
+  --tape-g: rgba(134, 239, 172, .72);
+  --tape-o: rgba(253, 186, 116, .72);
+
+  /* Sticky note tints */
+  --sticky-y: #fef9c3;
+  --sticky-p: #fce7f3;
+  --sticky-b: #dbeafe;
+  --sticky-g: #dcfce7;
+  --sticky-o: #ffedd5;
+
+  /* Card notepad tints (softer, more paper-like) */
+  --card-g: #e8f5e0;
+  --card-p: #fce7ef;
+  --card-b: #e0eefa;
+  --card-y: #fdf6d8;
+  --card-o: #ffeeda;
+  --card-l: #efe6f8;
+
+  /* Fonts */
+  --font-hand: "Kalam", Georgia, serif;
+  --font-sketch: "Architects Daughter", "Kalam", Georgia, serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.em,.ic svg,.ih svg{
+  width:1em;
+  height:1em;
+  display:inline-block;
+  vertical-align:-0.125em;
+  flex:none;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  min-height: 100%;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--tx);
+  font: 16px/1.55 var(--font-hand);
+}
+
+::selection { background: var(--tape-y); }
+a { color: var(--red); text-underline-offset: 3px; }
+
+/* ---- Typography ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-sketch);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--tx);
+}
+
+.clx {
+    background-color: red; 
+    font-weight: bolder;
+}
+
+.g {
+  background: linear-gradient(120deg, blue, #5bbec9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+    
+  /* user-select:  */
+}
+.g ::selection {
+
+    color: #000;
+}
+
+
+/* ---- Header ---- */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1.8px solid var(--tx);
+  background: var(--bg);
+}
+header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  margin-right: auto;
+  font-family: var(--font-sketch);
+}
+
+/* ---- Inputs ---- */
+input, select, textarea {
+  background: #fff;
+  color: var(--tx);
+  border: 1.8px solid var(--tx);
+  border-radius: 0;
+  padding: 9px 12px;
+  font: inherit;
+  font-family: var(--font-hand);
+  max-width: 100%;
+  outline: none;
+  transition: box-shadow .14s;
+}
+input::placeholder, textarea::placeholder { color: var(--mu); }
+input:focus, select:focus, textarea:focus {
+  box-shadow: 3px 3px 0 var(--tape-y);
+}
+button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* ---- Buttons ---- */
+button {
+  font: inherit;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  background: #fff;
+  color: var(--tx);
+  border: 1.8px solid var(--tx);
+  border-radius: 0;
+  padding: 9px 16px;
+  box-shadow: 3px 3px 0 rgba(28, 28, 28, .18);
+  transition: transform .14s cubic-bezier(.34, 1.56, .64, 1),
+              box-shadow .14s;
+}
+button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 rgba(28, 28, 28, .2);
+}
+button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 rgba(28, 28, 28, .18);
+}
+button.pri {
+  background: #0F0;
+  border: 1.8px solid var(--tx);
+  color: #000;
+  font-weight: 500;
+}
+
+/* ---- Layout ---- */
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ---- Hero ---- */
+.hero { padding: 18px 0 8px; }
+.hero h2 {
+  font-size: clamp(26px, 5vw, 42px);
+  font-weight: 700;
+}
+.hero p {
+  color: var(--mu);
+  max-width: 60ch;
+  margin: 8px 0 0;
+  font-family: var(--font-hand);
+}
+
+/* ---- Row / Tabs ---- */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+.tab {
+  border-radius: 0;
+  padding: 7px 15px;
+  color: var(--mu);
+  font-family: var(--font-sans);
+  font-size: .9rem;
+  border: 1.5px solid rgba(28, 28, 28, .25);
+  background: #fff;
+  box-shadow: 2px 2px 0 rgba(28, 28, 28, .14);
+  transition: all .14s;
+}
+.tab:hover {
+  color: var(--tx);
+  border-color: var(--tx);
+}
+.tab.on {
+  background: var(--sticky-y);
+  color: var(--tx);
+  border-color: var(--tx);
+  box-shadow: 2px 2px 0 rgba(28, 28, 28, .2);
+}
+.tab.t.on {
+  background: var(--sticky-p);
+  border-color: var(--tx);
+}
+
+/* ---- Card grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+  padding: 10px 0;
+}
+
+/* Card base — tape + random tilt + notepad colors */
+.card {
+  position: relative;
+  background: var(--card-g);
+  border: 1.8px solid var(--tx);
+  border-radius: 0;
+  padding: 22px 16px 16px;
+  cursor: pointer;
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1),
+              box-shadow .2s;
+  text-align: left;
+  display: block;
+  width: 100%;
+  color: inherit;
+  box-shadow: 3px 4px 0 rgba(28, 28, 28, .12),
+              1px 2px 8px rgba(0, 0, 0, .05);
+  transform: rotate(var(--tilt, 0deg));
+}
+
+/* Tape strip stuck to the top of each card */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 64px;
+  height: 20px;
+  transform: translateX(-50%) rotate(var(--tape-rot, -3deg));
+  background-color: var(--tape-color, var(--tape-y));
+  background-image: repeating-linear-gradient(
+    90deg, transparent 0, transparent 3px,
+    rgba(255, 255, 255, .3) 3px, rgba(255, 255, 255, .3) 4px
+  );
+  mix-blend-mode: multiply;
+  box-shadow: 0 1px 2px rgba(28, 28, 28, .08);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: rotate(0deg) translate(-1px, -4px) scale(1.015);
+  box-shadow: 6px 8px 0 rgba(28, 28, 28, .16),
+              1px 4px 12px rgba(0, 0, 0, .08);
+  z-index: 2;
+}
+
+/* Random tilt + tape color variants */
+.card:nth-child(6n+1) { --tilt: -1.6deg; --tape-rot: -4deg; --tape-color: var(--tape-g); background: var(--card-g); }
+.card:nth-child(6n+2) { --tilt:  1.2deg; --tape-rot:  3deg; --tape-color: var(--tape-p); background: var(--card-p); }
+.card:nth-child(6n+3) { --tilt: -0.8deg; --tape-rot: -2deg; --tape-color: var(--tape-b); background: var(--card-b); }
+.card:nth-child(6n+4) { --tilt:  1.8deg; --tape-rot:  4deg; --tape-color: var(--tape-y); background: var(--card-y); }
+.card:nth-child(6n+5) { --tilt: -1.2deg; --tape-rot: -3deg; --tape-color: var(--tape-o); background: var(--card-o); }
+.card:nth-child(6n+6) { --tilt:  0.9deg; --tape-rot:  2deg; --tape-color: var(--tape-p); background: var(--card-l); }
+
+/* Card heading — bold, sketch font */
+.card h3 {
+  font-size: 17px;
+  margin: 6px 0;
+  font-family: var(--font-sketch);
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+.card small { color: var(--mu); }
+
+/* Optional helper classes to force a specific card color */
+.card.card-g { background: var(--card-g); --tape-color: var(--tape-g); }
+.card.card-p { background: var(--card-p); --tape-color: var(--tape-p); }
+.card.card-b { background: var(--card-b); --tape-color: var(--tape-b); }
+.card.card-y { background: var(--card-y); --tape-color: var(--tape-y); }
+.card.card-o { background: var(--card-o); --tape-color: var(--tape-o); }
+.card.card-l { background: var(--card-l); --tape-color: var(--tape-p); }
+
+/* ---- Excerpt box ---- */
+.ex {
+  background: rgba(200, 68, 60, .06);
+  border-left: 3px solid var(--red);
+  border-radius: 0;
+  padding: 12px 14px;
+  margin: 12px 0;
+  white-space: pre-wrap;
+  font-family: var(--font-hand);
+}
+
+/* ---- Link grid ---- */
+.links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.links a {
+  background: #fff;
+  border: 1.8px solid var(--tx);
+  border-radius: 0;
+  padding: 10px 14px;
+  color: var(--tx);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 rgba(28, 28, 28, .14);
+  transition: transform .14s, box-shadow .14s;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+.links a:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(28, 28, 28, .18);
+}
+
+h2.s {
+  font-size: 22px;
+  margin-top: 30px;
+  font-family: var(--font-sketch);
+  font-weight: 700;
+}
+
+/* ---- Overlay / Modal ---- */
+.ov {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 28, .55);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: auto;
+  padding: max(16px, env(safe-area-inset-top, 0px)) 14px 24px;
+  z-index: 9;
+}
+.ov.on { display: flex; }
+.md {
+  position: relative;
+  background: #fff;
+  border: 1.8px solid var(--tx);
+  border-radius: 0;
+  width: 100%;
+  max-width: 820px;
+  padding: 20px;
+  margin: auto;
+  box-shadow: 5px 6px 0 rgba(28, 28, 28, .18),
+              1px 3px 12px rgba(0, 0, 0, .08);
+}
+
+/* ---- Stage (paper-like content area) ---- */
+.stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  background-image: repeating-linear-gradient(
+    transparent, transparent 31px, var(--ln) 31px, var(--ln) 32px
+  );
+  background-position: 0 8px;
+  border: 1.8px solid var(--tx);
+  border-radius: 0;
+  padding: 18px;
+  white-space: pre-wrap;
+  min-height: 200px;
+  font-family: var(--font-hand);
+}
+
+/* Faint tiled watermark */
+.wm {
+  position: absolute;
+  inset: -50%;
+  transform: rotate(-28deg);
+  font: 800 54px/110px var(--font-sketch);
+  color: rgba(28, 28, 28, .045);
+  pointer-events: none;
+  word-spacing: 40px;
+  user-select: none;
+}
+.stage > .t { position: relative; z-index: 1; }
+
+/* ---- Forms ---- */
+form label {
+  display: block;
+  margin: 10px 0 4px;
+  color: var(--mu);
+  font-size: 13px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+form input, form select, form textarea { width: 100%; }
+
+/* ---- Bar ---- */
+.bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  justify-content: flex-end;
+}
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  background: var(--sticky-y);
+  color: var(--tx);
+  padding: 9px 16px;
+  border-radius: 0;
+  border: 1.8px solid var(--tx);
+  box-shadow: 3px 3px 0 rgba(28, 28, 28, .2);
+  display: none;
+  z-index: 20;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* ---- Rich content ---- */
+.rich .sc {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border: 1.8px solid var(--ln);
+  border-radius: 0;
+  background: #fff;
+  box-shadow: 2px 2px 0 rgba(28, 28, 28, .1);
+}
+.rich .Atglance { border-left: 3px solid var(--red); }
+.rich .Examtips { border-color: var(--b); }
+.rich h3 {
+  font-size: 16px;
+  margin: 0 0 10px;
+  color: var(--tx);
+  font-family: var(--font-sketch);
+  font-weight: 700;
+}
+.rich p { margin: 0 0 6px; }
+.rich ul { margin: 0; padding-left: 18px; }
+.rich li { margin: 4px 0; }
+.rich li::marker { color: var(--red); }
+.stage .t.rich { white-space: normal; }
+
+/* ---- Key points ---- */
+.kp {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px dashed var(--ln);
+}
+.kp:first-of-type { border-top: 0; }
+.kp .n {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  /* background: var(--red); */
+  border: 3px solid #0f0;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+  color: red;
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+.kp code {
+  background: var(--bg-3);
+  padding: 2px 8px;
+  border-radius: 0;
+  font: 500 14px var(--font-mono);
+  color: var(--tx);
+}
+
+/* ---- Checkboxes ---- */
+.ck {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+/* ---- Tape decorations (opt-in via class) ---- */
+.tape {
+  display: block;
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  background-image: repeating-linear-gradient(
+    90deg, transparent 0, transparent 3px,
+    rgba(255, 255, 255, .18) 3px, rgba(255, 255, 255, .18) 4px
+  );
+}
+.tape-y { background-color: var(--tape-y); }
+.tape-p { background-color: var(--tape-p); }
+.tape-b { background-color: var(--tape-b); }
+.tape-g { background-color: var(--tape-g); }
+.tape-o { background-color: var(--tape-o); }
+
+/* ---- Sticky note tints ---- */
+.sticky-y { background: var(--sticky-y); }
+.sticky-p { background: var(--sticky-p); }
+.sticky-b { background: var(--sticky-b); }
+.sticky-g { background: var(--sticky-g); }
+.sticky-o { background: var(--sticky-o); }
+
+/* ---- Paper textures (opt-in) ---- */
+.paper-plain { background: var(--bg); }
+
+.paper-dot {
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, #c8c4ba 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+.paper-ruled {
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(
+    transparent, transparent 31px, var(--ln) 31px, var(--ln) 32px
+  );
+  background-position: 0 8px;
+}
+
+.paper-grid {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(180, 175, 165, .4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 175, 165, .4) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Grain overlay (opt-in) */
+.grain { position: relative; }
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: .4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* ---- Red notebook margin rule (opt-in) ---- */
+.margin-rule { position: relative; }
+.margin-rule::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 40px;
+  width: 1.5px;
+  background: var(--red-soft);
+  pointer-events: none;
+}
+
+/* ---- Entrance animations ---- */
+@keyframes note-drop {
+  0% { opacity: 0; transform: translateY(-14px) rotate(var(--tilt, 0deg)) scale(.96); }
+  65% { opacity: 1; transform: translateY(3px) rotate(var(--tilt, 0deg)) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) rotate(var(--tilt, 0deg)) scale(1); }
+}
+.note-enter {
+  animation: note-drop .38s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes scrawl {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.draw-line {
+  transform-origin: left;
+  animation: scrawl .6s cubic-bezier(.22, 1, .36, 1) 250ms both;
+}
+
+/* ---- Scrollbars ---- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb {
+  background: var(--mu);
+  border: 2px solid var(--bg-2);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--tx-2); }
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .margin-rule::before { left: 20px; }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .card { transition: none; transform: none; }
+}
